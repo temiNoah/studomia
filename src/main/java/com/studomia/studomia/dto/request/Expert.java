@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.*;
 
 @Data
-@Repository
+@Entity
 @Table(name="Expert")
 public class Expert extends Request{
     private static final long serialVersionUID= -3009157732242241606L;

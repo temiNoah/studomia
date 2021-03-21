@@ -3,6 +3,7 @@ package com.studomia.studomia.services.Impl;
 import com.studomia.studomia.dto.request.Student;
 import com.studomia.studomia.repository.StudentRepository;
 import com.studomia.studomia.services.StudentServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +13,13 @@ import java.util.Optional;
 @Service
 public class StudentServicesImpl implements StudentServices {
 
+    @Autowired
     StudentRepository studentRepository;
 
-    public StudentServicesImpl(@Qualifier("studomiaDatasource") StudentRepository datasource)
-    {
-        studentRepository = datasource;
-    }
+//    public StudentServicesImpl(@Qualifier("studomiaDatasource") StudentRepository datasource)
+//    {
+//        studentRepository = datasource;
+//    }
 
     public List<Student> getStudents()
     {
@@ -41,7 +43,7 @@ public class StudentServicesImpl implements StudentServices {
     public String editStudent( Student student)
 
     {
-        Student student1= studentRepository.updateById(student);
+        //Student student1= studentRepository.updateById(student);
 
          return "updated";
     }

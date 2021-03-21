@@ -23,8 +23,8 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
 
     //void markEntryAsRead(@Param("entryId") Long rssFeedEntryId, @Param("isRead") boolean isRead);
 
-    @Modifying(clearAutomatically = true) //clears the repository object
-    @Query("update Student s set s.fist_name =: where s.id =:entryId") //@Query(query)
-    Student updateById(@Param("")Student student);
+//    @Modifying(clearAutomatically = true) //clears the repository object
+//    @Query("update Student s set s.fist_name =: where s.id =:entryId") //@Query(query)
+//    Student updateById(@Param("")Student student);
 
 }

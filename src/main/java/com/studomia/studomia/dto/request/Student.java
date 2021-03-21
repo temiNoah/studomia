@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.*;
 
 @Data
-@Repository
+@Entity
 @Table(name="Student")
 public class Student extends Request{
 

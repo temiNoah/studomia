@@ -10,21 +10,21 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-public class StudomiaDatasource {
+public class StudomiaConfiguration {
 
-    @Value("${diverClassName}")
+    @Value("${spring.datasource.driverClassName}")
     private String driverClassName;
 
-    @Value("${data.source}")
+    @Value("${spring.datasource.url}")
     private String hostName;
 
-    @Value("${username}")
+    @Value("${spring.datasource.username}")
     private String username;
 
-    @Value("${password}")
+    @Value("${spring.datasource.password}")
     private String password;
 
-    @Value("${max.pool.size}")
+    @Value("${spring.datasource.max.connection.pool.size}")
     private String maxPoolSize;
 
     @Bean(name="studomiaDatasource")
