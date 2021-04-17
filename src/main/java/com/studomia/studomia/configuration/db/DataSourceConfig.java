@@ -1,4 +1,4 @@
-package com.studomia.studomia.configuration;
+package com.studomia.studomia.configuration.db;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
-@Configuration
-public class StudomiaConfiguration {
+//@Configuration
+public class DataSourceConfig {
 
     @Value("${spring.datasource.driverClassName}")
     private String driverClassName;
