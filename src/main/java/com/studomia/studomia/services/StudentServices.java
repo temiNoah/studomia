@@ -1,15 +1,21 @@
 package com.studomia.studomia.services;
 
-import com.studomia.studomia.dto.request.Student;
+import com.studomia.studomia.dto.response.StudentResponse;
+import com.studomia.studomia.dto.request.signup.Student;
+import com.studomia.studomia.exceptions.NotFoundException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 public interface StudentServices {
 
-    public List<Student> getStudents();
-    public Student addStudent(Student student);
-    public String deleteStudent( Student student);
-    public String editStudent(  Student student);
-    public Optional<Student> getStudent(String id);
+    public List<StudentResponse> getStudents() throws IOException;
+    public StudentResponse addStudent(Student student) throws IOException ;
+    public String deleteStudent(Long studentId);
+    public StudentResponse editStudent(Student student, Long studentId) throws IOException, NotFoundException;
+    public Optional<StudentResponse> getStudent(Long id) throws NotFoundException,IOException;
+
+    public StudentResponse assignStudentToRole(Long expertId , Long roleId) throws NotFoundException, IOException;
+
 }

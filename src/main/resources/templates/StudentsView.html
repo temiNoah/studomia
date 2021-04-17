@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+    <!------ Include the above in your HEAD tag ---------->
+
+    <style>
+        .custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+    </style>
+
+    <script type="text/javascript">
+             $("document").ready(function() {
+
+                $("#display").click(function() {
+
+                  $.ajax({    //create an ajax request to display.php
+                    type: "GET",
+                    beforeSend: function(xhr){xhr.setRequestHeader('X-COM-PERSIST', 'true'); xhr.setRequestHeader('X-COM-LOCATION', 'ASIA')},
+                    url: "http://localhost:8080/students/all",
+                    dataType: "json",   //expect html to be returned
+                    success: function(response){
+                                                  console.log(response);
+                                                   $('.content').html( "");
+                                                   // convert string to JSON
+                                                   // response = $.parseJSON(response);
+
+                                                    $(function() {
+                                                        var $action="del/add";
+                                                        var $counter=0;
+                                                        $.each(response, function(i, item) {
+                                                             $counter =$counter + 1;
+                                                            var $tr = $('<tr>').append(
+                                                                                     $('<td>').text($counter),
+                                                                                    $('<td>').text(item.studentId),
+                                                                                    $('<td>').text(item.firstName),
+                                                                                    $('<td>').text(item.lastName),
+                                                                                    $('<td>').text(item.email),
+                                                                                    $('<td>').text(item.age),
+                                                                                    $('<td>').text(item.phone),
+                                                                                    $('<td>').text(item.username),
+                                                                                    $('<td>').text($action),
+
+                                                                            )  ;
+
+
+                                                            $('.content2').append( $tr);
+                                                           // console.log($tr.wrap('<p>').html()); /.appendTo('#records_table')
+                                                        });
+                                                    });
+
+                       // $("#custab").html(result);
+                        //alert(response);
+                      }
+
+                });
+            });
+            });
+
+
+
+
+
+
+
+     </script>
+
+
+</head>
+<body>
+
+<div style="margin-top:50px">
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+        <h1> Registered Student </h1>
+
+        <table class="table table-striped custab">
+            <thead>
+            <a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new categories</a>
+            <a href="#" width="20px" class="btn btn-primary btn-xs pull-left" id="display"><b>+</b> Refresh</a>
+            <tr>
+                <th>S/n</th>
+                <th>Student Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>username</th>
+                <th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody class="content2"></tbody>
+
+            <!--            <tr>-->
+<!--                <td>1</td>-->
+<!--                <td>News</td>-->
+<!--                <td>News Cate</td>-->
+<!--                <td>1</td>-->
+<!--                <td>News</td>-->
+<!--                <td>News Cae</td>-->
+<!--                <td>New</td>-->
+<!--                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>-->
+<!--            </tr>-->
+
+        </table>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
