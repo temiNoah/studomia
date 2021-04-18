@@ -1,11 +1,12 @@
 package com.studomia.studomia.security;
 
+import com.studomia.studomia.StudomiaApplication;
+import com.studomia.studomia.configuration.securityConfig.AppConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -16,18 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
 public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 //    @Autowired
 //    private UserRepository userRepository;
-    @Value("${app.baseUrl}")
-    private String baseUrl;
 
-    private String homeUrl = baseUrl + "/profile";
+    AppConfig appConfig;
+
+
+    public CustomAuthenticationSuccessHandler( AppConfig appConfig)
+    {
+       this.appConfig = appConfig;
+    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException
@@ -36,9 +39,10 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             return;
         }
 
+
         DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
 
-        if(!Optional.ofNullable(oidcUser).isPresent())
+        if(Optional.ofNullable(oidcUser).isPresent())
         {
             //social media login
             Map attributes = oidcUser.getAttributes();
@@ -55,9 +59,15 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         //User user = userRepository.findByEmail(email);
         //String token = JwtTokenUtil.generateToken(user);
-        String redirectionUrl = UriComponentsBuilder.fromUriString(homeUrl)
+
+
+        String redirectionUrl = UriComponentsBuilder.fromUriString(appConfig.getPath())
                 //.queryParam("auth_token", token)
                 .build().toUriString();
+
+        response.setHeader("Location", appConfig.getBaseUrl() );
+        response.setStatus(302);
+//        response.sendRedirect(baseUrl);
         getRedirectStrategy().sendRedirect(request, response, redirectionUrl);
 
 

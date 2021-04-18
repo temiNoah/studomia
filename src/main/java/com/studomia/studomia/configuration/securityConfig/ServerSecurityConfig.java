@@ -73,6 +73,9 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
         );
     }
 
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //                .antMatchers("/login/**","/register/**","/view-students/**","/view-experts/**").permitAll()
@@ -80,7 +83,7 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                       .antMatchers("/login/**","/register/**").permitAll()
+                       .antMatchers("/login/**","/register/**","/students/**").permitAll()
                        .anyRequest().authenticated()
                        .and()
                 .csrf()
@@ -98,7 +101,7 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
                                 .baseUri("/oauth2/authorize")
                                 .authorizationRequestRepository(customAuthorizationRequestRepository())
                                 .and()
-                       .successHandler(new CustomAuthenticationSuccessHandler())
+                       .successHandler(customAuthenticationSuccessHandler)
 
         ;
         // @      //formatter:on
