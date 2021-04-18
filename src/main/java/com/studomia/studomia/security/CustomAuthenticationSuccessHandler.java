@@ -61,12 +61,14 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         //String token = JwtTokenUtil.generateToken(user);
 
 
-        String redirectionUrl = UriComponentsBuilder.fromUriString(appConfig.getPath())
+        response.setHeader("Location", StudomiaApplication.baseUrl );
+        response.setStatus(302);
+
+        String redirectionUrl = UriComponentsBuilder.fromUriString(StudomiaApplication.path)
                 //.queryParam("auth_token", token)
                 .build().toUriString();
 
-        response.setHeader("Location", appConfig.getBaseUrl() );
-        response.setStatus(302);
+
 //        response.sendRedirect(baseUrl);
         getRedirectStrategy().sendRedirect(request, response, redirectionUrl);
 

@@ -21,17 +21,17 @@ public class StudomiaApplication {
 	}
 
 
-	public static String b; public static String p="";
+	public static String baseUrl; public static String path;
 
 
 	@Bean
 	ApplicationRunner applicationRunner(Environment environment) {
 		return args -> {
-			  b = environment.getProperty("app.baseUrl");
-			 p = environment.getProperty("app.on.auth.success.redirect.path");
+			  baseUrl = environment.getProperty("app.baseUrl");
+			 path = environment.getProperty("app.on.auth.success.redirect.path");
 
 
-			 System.out.println("basse:"+ b);
+
 			init();
 		};
 	}
@@ -40,8 +40,8 @@ public class StudomiaApplication {
 	public  AppConfig init()
 	{
 		AppConfig app =  new  AppConfig();
-		app.setBaseUrl(b);
-		app.setPath(p);
+		app.setBaseUrl(baseUrl);
+		app.setPath(path);
 
 		return app;
 	}
