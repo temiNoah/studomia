@@ -78,7 +78,7 @@ public class StudentServicesImpl implements StudentServices {
     {
         Optional<com.studomia.studomia.dao.entities.Student> studentOpt= studentRepository.findById(studentId);
 
-        if(studentOpt.isEmpty())
+        if(!studentOpt.isPresent())
             throw new NotFoundException("Student not found");
 
         studentRepository.deleteById(studentId);
@@ -93,7 +93,7 @@ public class StudentServicesImpl implements StudentServices {
         Optional<com.studomia.studomia.dao.entities.Student> studentOpt= studentRepository.findById(studentId);
 
 
-        if(studentOpt.isEmpty())
+        if(!studentOpt.isPresent())
             throw new NotFoundException("Student not found");
 
 
@@ -120,7 +120,7 @@ public class StudentServicesImpl implements StudentServices {
         Optional<com.studomia.studomia.dao.entities.Student> studentOpt=studentRepository.findById(id);
 
 
-        if(studentOpt.isEmpty())
+        if(!studentOpt.isPresent())
             throw new NotFoundException("Student not found");
 
         com.studomia.studomia.dao.entities.Student studentDao = studentOpt.get();
@@ -143,10 +143,10 @@ public class StudentServicesImpl implements StudentServices {
 
         logger.info("Service: fetching role from repository. role Id:" + roleId);
 
-        if(studentOpt.isEmpty() )
+        if(!studentOpt.isPresent() )
             throw new NotFoundException("Student Not Found ,id=" + studentId);
 
-        if(roleOpt.isEmpty())
+        if(!roleOpt.isPresent())
             throw new NotFoundException("Role Not Found ,id=" + roleId);
 
         com.studomia.studomia.dao.entities.Student studentDao = studentOpt.get();

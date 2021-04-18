@@ -37,7 +37,7 @@ public class PermissionServiceImpl implements PermissionService {
     {
         List<com.studomia.studomia.dao.entities.Permission> permissions = permissionRepository.findAll();
 
-        if(Optional.ofNullable(permissions).isEmpty())
+        if(!Optional.ofNullable(permissions).isPresent())
             throw new EmptyRecordsException();
 
         List<PermissionResponse>  permissionResponses= new ArrayList<PermissionResponse>();
@@ -78,7 +78,7 @@ public class PermissionServiceImpl implements PermissionService {
     public String deletePermission(Long permissionId) throws NotFoundException {
         Optional<com.studomia.studomia.dao.entities.Permission> permissionOpt= permissionRepository.findById(permissionId) ;
 
-        if(permissionOpt.isEmpty())
+        if(!permissionOpt.isPresent())
             throw new NotFoundException("Permission not found");
 
         permissionRepository.deleteById(permissionId);
@@ -92,7 +92,7 @@ public class PermissionServiceImpl implements PermissionService {
 
         Optional<com.studomia.studomia.dao.entities.Permission> permissionOpt= permissionRepository.findById(permissionId);
 
-        if(permissionOpt.isEmpty())
+        if(!permissionOpt.isPresent())
             throw new NotFoundException("Permission not Found to edit");
 
 
@@ -118,7 +118,7 @@ public class PermissionServiceImpl implements PermissionService {
 
         Optional<com.studomia.studomia.dao.entities.Permission> permissionOpt= permissionRepository.findById(permissionId);
 
-        if(permissionOpt.isEmpty())
+        if(!permissionOpt.isPresent())
             throw new NotFoundException("Permission not Found");
 
         com.studomia.studomia.dao.entities.Permission permissionDao = permissionOpt.get();
