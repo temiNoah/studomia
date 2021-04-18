@@ -15,4 +15,4 @@ jobs:
     - uses: actions/checkout@v2
     - name: Deploy to production
       run: |
-       git push --force https://heroku:ce11c13e-be0e-4ed8-86f4-51b178344e12@git.heroku.com/studomia.git master
+       git push --force https://heroku:ce11c13e-be0e-4ed8-86f4-51b178344e12@git.heroku.com/temi-lab-app.git master
