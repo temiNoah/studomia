@@ -73,7 +73,7 @@ public class ExpertServiceImpl implements ExpertServices {
 
         Optional<com.studomia.studomia.dao.entities.Expert> expertOpt= expertRepository.findById(expertId);
 
-        if(expertOpt.isEmpty())
+        if(!expertOpt.isPresent())
             throw new NotFoundException("Expert not found");
 
 
@@ -89,7 +89,7 @@ public class ExpertServiceImpl implements ExpertServices {
     {
         Optional<com.studomia.studomia.dao.entities.Expert> expertOpt= expertRepository.findById(expertId);
 
-        if(expertOpt.isEmpty())
+        if(!expertOpt.isPresent())
             throw new NotFoundException("Expert not found");
 
         com.studomia.studomia.dao.entities.Expert expertDao = expertOpt.get();
@@ -115,7 +115,7 @@ public class ExpertServiceImpl implements ExpertServices {
     {
         Optional<com.studomia.studomia.dao.entities.Expert> expertOpt= expertRepository.findById(id);
 
-        if(expertOpt.isEmpty())
+        if(!expertOpt.isPresent())
             throw new NotFoundException("Expert not found");
 
         com.studomia.studomia.dao.entities.Expert expertDao = expertOpt.get();
@@ -139,10 +139,10 @@ public class ExpertServiceImpl implements ExpertServices {
 
         logger.info("Service: fetching role from repository. role Id:" + roleId);
 
-        if(expertOpt.isEmpty() )
+        if(!expertOpt.isPresent() )
             throw new NotFoundException("Expert Not Found ,id=" + expertId);
 
-        if(roleOpt.isEmpty())
+        if(!roleOpt.isPresent())
             throw new NotFoundException("Role Not Found ,id=" + roleId);
 
         com.studomia.studomia.dao.entities.Expert expertDao = expertOpt.get();

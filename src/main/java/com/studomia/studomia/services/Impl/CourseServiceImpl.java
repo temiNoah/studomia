@@ -76,7 +76,7 @@ public class CourseServiceImpl implements CourseServices {
     {
         Optional<com.studomia.studomia.dao.entities.Course> course = courseRepository.findById(courseId);
 
-        if(course.isEmpty())
+        if(!course.isPresent())
             throw new NotFoundException("Service: course not found, course id:"+ courseId);
 
         courseRepository.deleteById(courseId);
@@ -90,7 +90,7 @@ public class CourseServiceImpl implements CourseServices {
 
            Optional<com.studomia.studomia.dao.entities.Course> courseOpt = courseRepository.findById(courseId);
 
-           if(courseOpt.isEmpty())
+           if(!courseOpt.isPresent())
                throw new NotFoundException("Service: course not Found in repo");
 
            com.studomia.studomia.dao.entities.Course courseDao = courseOpt.get();
@@ -116,7 +116,7 @@ public class CourseServiceImpl implements CourseServices {
 
         Optional<com.studomia.studomia.dao.entities.Course> courseOpt= courseRepository.findById(courseId);
 
-        if(courseOpt.isEmpty())
+        if(!courseOpt.isPresent())
             throw new NotFoundException("Course not Found");
 
         com.studomia.studomia.dao.entities.Course courseDao = courseOpt.get();
@@ -140,10 +140,10 @@ public class CourseServiceImpl implements CourseServices {
 
          log.info("Service: fetching expert from repository. expert Id:" + expertId);
 
-         if(courseOpt.isEmpty() )
+         if(!courseOpt.isPresent() )
               throw new NotFoundException("Course Not Found ,id=" + courseId);
 
-         if(expertOpt.isEmpty())
+         if(!expertOpt.isPresent())
              throw new NotFoundException("Expert Not Found ,id=" + expertId);
 
          com.studomia.studomia.dao.entities.Course courseDao = courseOpt.get();
@@ -173,10 +173,10 @@ public class CourseServiceImpl implements CourseServices {
 
          log.info("Service: fetching student from repository. student Id:" + studentId);
 
-         if(courseOpt.isEmpty() )
+         if(!courseOpt.isPresent() )
              throw new NotFoundException("Course Not Found ,id=" + courseId);
 
-         if(studentOpt.isEmpty())
+         if(!studentOpt.isPresent())
              throw new NotFoundException("Student Not Found ,id=" + studentId);
 
          com.studomia.studomia.dao.entities.Course courseDao = courseOpt.get();

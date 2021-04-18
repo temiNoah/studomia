@@ -82,7 +82,7 @@ public class AdminServiceImpl implements AdminServices {
         Optional<com.studomia.studomia.dao.entities.Admin> adminOpt= adminRepository.findById(adminId);
 
 
-        if(adminOpt.isEmpty())
+        if(!adminOpt.isPresent())
             throw new NotFoundException("Admin not found");
 
         adminRepository.deleteById(adminId);
@@ -97,7 +97,7 @@ public class AdminServiceImpl implements AdminServices {
         Optional<com.studomia.studomia.dao.entities.Admin> adminOpt= adminRepository.findById(adminId);
 
 
-        if(adminOpt.isEmpty())
+        if(!adminOpt.isPresent())
             throw new NotFoundException("Admin not found");
 
 
@@ -122,7 +122,7 @@ public class AdminServiceImpl implements AdminServices {
         Optional<com.studomia.studomia.dao.entities.Admin> adminOpt= adminRepository.findById(id);
 
 
-        if(adminOpt.isEmpty())
+        if(!adminOpt.isPresent())
             throw new NotFoundException("Admin not Found");
 
         com.studomia.studomia.dao.entities.Admin adminDao= adminOpt.get();
@@ -145,10 +145,10 @@ public class AdminServiceImpl implements AdminServices {
 
         logger.info("Service: fetching role from repository. role Id:" + roleId);
 
-        if(adminOpt.isEmpty() )
+        if(!adminOpt.isPresent() )
             throw new NotFoundException("Admin Not Found ,id=" + adminId);
 
-        if(roleOpt.isEmpty())
+        if(!roleOpt.isPresent())
             throw new NotFoundException("Role Not Found ,id=" + roleId);
 
         com.studomia.studomia.dao.entities.Admin adminDao = adminOpt.get();

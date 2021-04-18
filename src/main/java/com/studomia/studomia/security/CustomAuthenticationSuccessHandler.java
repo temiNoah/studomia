@@ -35,7 +35,7 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
         DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
 
-        if(!Optional.ofNullable(oidcUser).isEmpty())
+        if(!Optional.ofNullable(oidcUser).isPresent())
         {
             //social media login
             Map attributes = oidcUser.getAttributes();

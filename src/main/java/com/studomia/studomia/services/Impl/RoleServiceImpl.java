@@ -39,7 +39,7 @@ public class RoleServiceImpl implements RoleService {
 
         List<com.studomia.studomia.dao.entities.Role> roleList = roleRepository.findAll();
 
-        if(Optional.ofNullable(roleList).isEmpty())
+        if(!Optional.ofNullable(roleList).isPresent())
             throw new EmptyRecordsException();
 
 
@@ -83,7 +83,7 @@ public class RoleServiceImpl implements RoleService {
 
         Optional<com.studomia.studomia.dao.entities.Role> roleOpt= roleRepository.findById(roleId) ;
 
-        if(roleOpt.isEmpty())
+        if(!roleOpt.isPresent())
             throw new NotFoundException("Role not found");
 
         roleRepository.deleteById(roleId);
@@ -96,7 +96,7 @@ public class RoleServiceImpl implements RoleService {
     {
         Optional<com.studomia.studomia.dao.entities.Role> roleOpt= roleRepository.findById(roleId);
 
-        if(roleOpt.isEmpty())
+        if(!roleOpt.isPresent())
             throw new NotFoundException("Role not Found to edit");
 
 
@@ -122,7 +122,7 @@ public class RoleServiceImpl implements RoleService {
 
         Optional<com.studomia.studomia.dao.entities.Role> roleOpt= roleRepository.findById(roleId);
 
-        if(roleOpt.isEmpty())
+        if(!roleOpt.isPresent())
             throw new NotFoundException("Role not Found");
 
         com.studomia.studomia.dao.entities.Role roleDao = roleOpt.get();
@@ -145,10 +145,10 @@ public class RoleServiceImpl implements RoleService {
 
         logger.info("Service: fetching role from repository. role Id:" + roleId);
 
-        if(permissionOpt.isEmpty() )
+        if(!permissionOpt.isPresent() )
             throw new NotFoundException("Permission Not Found ,id=" + permissionId);
 
-        if(roleOpt.isEmpty())
+        if(!roleOpt.isPresent())
             throw new NotFoundException("Role Not Found ,id=" + roleId);
 
         com.studomia.studomia.dao.entities.Permission permissionDao = permissionOpt.get();
