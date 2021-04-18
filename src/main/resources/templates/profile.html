@@ -268,7 +268,10 @@
 
 <script type="text/javascript" language="javascript">
         const userAction = async () => {
-                const response = await fetch('http://localhost:8080/api/user', {
+                    var getUrl = window.location;
+                    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+
+                const response = await fetch(baseUrl+ 'api/user', {
                                 method: 'GET',
                                 //body: myBody, // string or object
                                 headers: {

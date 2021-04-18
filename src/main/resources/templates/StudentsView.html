@@ -29,11 +29,14 @@
              $("document").ready(function() {
 
                 $("#display").click(function() {
+                  var getUrl = window.location;
+                   var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + "";// getUrl.pathname.split('/')[1];
+
 
                   $.ajax({    //create an ajax request to display.php
                     type: "GET",
                     beforeSend: function(xhr){xhr.setRequestHeader('X-COM-PERSIST', 'true'); xhr.setRequestHeader('X-COM-LOCATION', 'ASIA')},
-                    url: "http://localhost:8080/students/all",
+                    url: baseUrl + "students/all",
                     dataType: "json",   //expect html to be returned
                     success: function(response){
                                                   console.log(response);
