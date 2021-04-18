@@ -1,6 +1,7 @@
 package com.studomia.studomia.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,8 +24,10 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 //    @Autowired
 //    private UserRepository userRepository;
+    @Value("${app.baseUrl}")
+    private String baseUrl;
 
-    private String homeUrl = "http://localhost:8080/profile";
+    private String homeUrl = baseUrl + "/profile";
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException
