@@ -18,4 +18,4 @@ jobs:
         git remote add heroku https://heroku:${{secrets.HEROKU_API_KEY}}@git.heroku.com/${{secrets.HEROKU_APP}}.git
     - name: Deploy to Heroku
       run: |
-        git push --force https://heroku:${{secrets.HEROKU_API_KEY}}@git.heroku.com/${{secrets.HEROKU_APP}} master
+        git push --force https://heroku:${{secrets.HEROKU_API_KEY}}@git.heroku.com/${{secrets.HEROKU_APP}}.git master
