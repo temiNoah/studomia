@@ -128,7 +128,10 @@
             }
 
     const userAction = async () => {
-            const response = await fetch('http://localhost:8080/students/add', {
+            var getUrl = window.location;
+            var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" ;//+ getUrl.pathname.split('/')[1];
+
+            const response = await fetch( baseUrl+ 'students/add', {
                             method: 'POST',
                             body: data, // string or object
                             headers: {
