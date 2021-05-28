@@ -34,6 +34,7 @@ public class StudentController {
         return studentServices.getStudents();
     }
 
+   // @CrossOrigin(origins = "http://localhost:3003") //done globally
     @PostMapping(value="/add")
     public ResponseEntity addStudent(@RequestBody Student student,
                                      @RequestHeader(name = "X-COM-PERSIST",required = true) String headerPersist,
