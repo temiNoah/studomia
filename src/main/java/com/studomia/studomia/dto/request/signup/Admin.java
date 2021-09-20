@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 
 import javax.persistence.Column;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 //@toString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Admin extends User {

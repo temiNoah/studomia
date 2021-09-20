@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @Data
 @Entity
 @Table(name="Expert")
