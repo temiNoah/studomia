@@ -14,6 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -47,6 +50,14 @@ public class AdminController {
 
         logger.info("X-COM-PERSIST=" + headerPersist +"\n" + "X-COM-LOCATION=" + headerLocation);
 
+        LocalDateTime today = LocalDateTime.now();
+        String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
+        admin.setCreatedAt(formattedDate);
+        admin.setUpdatedAt(formattedDate);
+        admin.setActive(true);
+        admin.setEmailVerified(false);
+        admin.setActive(true);
+        admin.setEmailVerified(false);
         ResponseEntity responseEntity = new ResponseEntity(adminServices.addAdmin(admin), HttpStatus.OK);
 
         return responseEntity;

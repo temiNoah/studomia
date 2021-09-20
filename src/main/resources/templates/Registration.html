@@ -112,13 +112,15 @@
 
              var unindexed_array = $(form).serializeArray();
 
+             console.log( unindexed_array );
+
              var indexed_array = {};
 
              $.map(unindexed_array, function(n, i){
                     indexed_array[n['name']] = n['value'];
                 });
 
-              data = indexed_array;
+              data = JSON.stringify(indexed_array);
 
               userAction();
 
@@ -133,9 +135,11 @@
 
             const response = await fetch( baseUrl+ 'students/add', {
                             method: 'POST',
-                            body: data, // string or object
+                            body: data,
                             headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'X-COM-PERSIST' : 'chgvh',
+                            'X-COM-LOCATION':'lagos'
                             }
                             });
 
@@ -205,7 +209,7 @@
                                 <input type="email" class="form-control" name="email" placeholder="Your Email *" value="" />
                             </div>
                             <div class="form-group">
-                                <input type="text" minlength="10" maxlength="10" name="phoneNumber" class="form-control" placeholder="Your Phone *" value="" />
+                                <input type="text" minlength="11" maxlength="11" name="phoneNumber" class="form-control" placeholder="Your Phone *" value="" />
                             </div>
                             <div class="form-group">
                                 <select class="form-control">

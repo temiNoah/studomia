@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 //this is for regular login :u
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetailsDeprecated implements UserDetails {
 
     private Long id;
     //@Column

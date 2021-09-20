@@ -11,6 +11,7 @@ import com.studomia.studomia.utils.DomainConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -165,6 +166,11 @@ public class StudentServicesImpl implements StudentServices {
 
         return studentResponse;
 
+    }
+
+    @Override
+    public boolean userExists(String username) throws UsernameNotFoundException {
+        return studentRepository.existsByEmail(username).isPresent()? true: false;
     }
 
 

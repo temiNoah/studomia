@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,7 +41,41 @@ public class ExceptionHandlers extends BaseExceptionHandler {
     @ResponseBody
     public ErrorResponse handleInvalidFormatException(final InvalidFormatException ex)
     {
-        return  new ErrorResponse("invalid numeric data" , ex.getMessage());
+        ex.printStackTrace();
+        return  new ErrorResponse("invalid numeric data:" , ex.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorResponse handleException(final Exception ex)
+    {
+        ex.printStackTrace();
+        return  new ErrorResponse("Generic Exception:" , ex.getMessage());
+    }
+
+
+
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleUsernameNotFoundException(final UsernameNotFoundException ex)
+    {
+        ex.printStackTrace();
+        return  new ErrorResponse("Username  Not Found Exception:" ,  ex.getMessage());
+    }
+
+
+
+
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorResponse handleBadCredentialsException(final BadCredentialsException ex)
+    {
+        ex.printStackTrace();
+        return  new ErrorResponse("Bad credentials Exception:" ,  ex.getMessage());
     }
 
 

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "t_permission")
+@Table(name = "permission")
 public class Permission {
 
     public static final String PREFIX ="SCOPE_";

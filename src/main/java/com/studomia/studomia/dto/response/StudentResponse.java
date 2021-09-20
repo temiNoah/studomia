@@ -4,6 +4,8 @@ import com.studomia.studomia.dao.entities.Course;
 import com.studomia.studomia.dao.entities.Role;
 
 import javax.persistence.Column;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,6 +36,18 @@ public class StudentResponse {
     private Set<Course> courses = new HashSet<>();
 
     private Set<Role> roles;
+
+    private String updatedAt;
+
+    private String createdBy;
+
+    private String modifiedBy;
+
+    private String createdAt;
+
+    private Boolean emailVerified;
+
+    private Boolean isActive;
 
 
     public long getStudentId() {
@@ -114,5 +128,54 @@ public class StudentResponse {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }

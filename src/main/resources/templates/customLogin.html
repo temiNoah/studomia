@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
 
 
-<style>
+	<style>
 
 /*
     Note: It is best to use a less version of this file ( see http://css2less.cc
@@ -82,37 +82,85 @@
 </style>
 
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
+
+
+
+<script type="text/javascript" language="javascript">
+            var data;
+    function onSubmit( form ){
+             //   data = JSON.stringify( $(form).serializeArray() ); //  <-----------
+
+             var unindexed_array = $(form).serializeArray();
+
+             console.log( unindexed_array );
+
+             var indexed_array = {};
+
+             $.map(unindexed_array, function(n, i){
+                    indexed_array[n['name']] = n['value'];
+                });
+
+              data = JSON.stringify(indexed_array);
+
+              userAction();
+
+              console.log( indexed_array );
+
+              return false; //don't submit
+            }
+
+    const userAction = async () => {
+            var getUrl = window.location;
+            var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" ;//+ getUrl.pathname.split('/')[1];
+
+            const response = await fetch( baseUrl+ 'students/signIn', {
+                            method: 'POST',
+                            body: data,
+                            headers: {
+                            'Content-Type': 'application/json',
+                            'X-COM-PERSIST' : 'chgvh',
+                            'X-COM-LOCATION':'lagos'
+                            }
+                            });
+
+            const myJson = await response.json(); //extract JSON from the http response
+
+             //$(".avatar").html("<img alt='temi' src='"+ myJson.picture +"'/>");
+            };
+
+
+</script>
 
 <body>
 <div class="container">
 
 
-    <div class="omb_login">
-    	<h3 class="omb_authTitle">Login or <a href="/register">Sign up</a></h3>
+	<div class="omb_login">
+		<h3 class="omb_authTitle">Login or <a href="/register">Sign up</a></h3>
 		<div class="row omb_row-sm-offset-3 omb_socialButtons">
-    	    <div class="col-xs-4 col-sm-2">
-		        <a href="/oauth2/authorize/facebook" class="btn btn-lg btn-block omb_btn-facebook">
+			<div class="col-xs-4 col-sm-2">
+				<a href="/oauth2/authorize/facebook" class="btn btn-lg btn-block omb_btn-facebook">
 
 					<i class="fa fa-facebook"></i>
-<!--			        <span class="hidden-xs">Facebook</span>-->
-		        </a>
-	        </div>
-        	<div class="col-xs-4 col-sm-2">
-		        <a href="/oauth2/authorize/twitter" class="btn btn-lg btn-block omb_btn-twitter">
-			        <i class="fa fa-twitter"></i>
+					<!--			        <span class="hidden-xs">Facebook</span>-->
+				</a>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<a href="/oauth2/authorize/github" class="btn btn-lg btn-block omb_btn-twitter">
+					<i class="fa fa-twitter"></i>
 
-<!--			        <span class="hidden-xs">Twitter</span>-->
-		        </a>
-	        </div>
-        	<div class="col-xs-4 col-sm-2">
-		        <a href="/oauth2/authorize/google" class="btn btn-lg btn-block omb_btn-google">
-<!--			        <i class="fa fa-google-plus visible-xs"></i>-->
+					<!--			        <span class="hidden-xs">Twitter</span>-->
+				</a>
+			</div>
+			<div class="col-xs-4 col-sm-2">
+				<a href="/oauth2/authorize/google" class="btn btn-lg btn-block omb_btn-google">
+					<!--			        <i class="fa fa-google-plus visible-xs"></i>-->
 					<i class="fa fa-google-plus"></i>
-<!--			        <span class="hidden-xs">Google+</span>-->
-		        </a>
-	        </div>
+					<!--			        <span class="hidden-xs">Google+</span>-->
+				</a>
+			</div>
 		</div>
 
 		<div class="row omb_row-sm-offset-3 omb_loginOr">
@@ -124,7 +172,7 @@
 
 		<div class="row omb_row-sm-offset-3">
 			<div class="col-xs-12 col-sm-6">
-			    <form class="omb_loginForm" action="" autocomplete="off" method="POST">
+				<form class="omb_loginForm" method="post" enctype="multipart/form-data" id="form" onsubmit='return onSubmit(this)'>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-user"></i></span>
 						<input type="text" class="form-control" name="username" placeholder="email address">
@@ -135,12 +183,12 @@
 						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 						<input  type="password" class="form-control" name="password" placeholder="Password">
 					</div>
-                    <span class="help-block">Password error</span>
+					<span class="help-block">Password error</span>
 
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 				</form>
 			</div>
-    	</div>
+		</div>
 		<div class="row omb_row-sm-offset-3">
 			<div class="col-xs-12 col-sm-3">
 				<label class="checkbox">
@@ -157,6 +205,6 @@
 
 
 
-        </div>
-        </body>
-        </html>
+</div>
+</body>
+</html>

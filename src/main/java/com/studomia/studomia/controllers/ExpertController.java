@@ -13,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.studomia.studomia.exceptions.NotFoundException;
 import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -40,6 +43,15 @@ public class ExpertController {
     {
 
         logger.info("X-COM-PERSIST=" + headerPersist +"\n" + "X-COM-LOCATION=" + headerLocation);
+
+        LocalDateTime today = LocalDateTime.now();
+        String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
+        expert.setCreatedAt(formattedDate);
+        expert.setUpdatedAt(formattedDate);
+        expert.setActive(true);
+        expert.setEmailVerified(false);
+        expert.setActive(true);
+        expert.setEmailVerified(false);
 
         ResponseEntity responseEntity = new ResponseEntity(expertService.addExpert(expert), HttpStatus.OK);
 

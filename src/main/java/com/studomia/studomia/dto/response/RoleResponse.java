@@ -13,7 +13,8 @@ import java.util.Set;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RoleResponse extends Response{
+public class RoleResponse extends Response
+{
 
     @JsonProperty("name")
     private String name;
@@ -22,6 +23,7 @@ public class RoleResponse extends Response{
     private String description;
 
     Set<Permission> permissions ;
+
 
     public void setName(String name) {
         this.name = name;

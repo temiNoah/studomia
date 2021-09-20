@@ -2,6 +2,7 @@ package com.studomia.studomia.dto.request.signup;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.studomia.studomia.dao.entities.User;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ import javax.persistence.Column;
 @AllArgsConstructor
 //@toString
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Admin {
+public class Admin extends User {
 
     @ApiModelProperty(hidden = true)
     private Long adminId=0l;

@@ -2,6 +2,7 @@ package com.studomia.studomia.dto.request.signup;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.studomia.studomia.dao.entities.User;
 import com.studomia.studomia.dto.request.Course;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Set;
 /*** Signup request model **/
 //@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Expert {
+public class Expert extends User {
 
     @ApiModelProperty(hidden = true)
     private Long expertId=0l;

@@ -2,7 +2,10 @@ package com.studomia.studomia.dao.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.studomia.studomia.model.RoleName;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "t_role")
+@Table(name = "role")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Role  {
     public static final String PREFIX ="ROLE_";
@@ -20,8 +23,14 @@ public class Role  {
     @Column(name="role_id")
     private Long roleId;
 
-    @Column(name="name")
+//    @Column(name="name")
+//    private String name;
+
+    @Column(name = "ROLE_NAME")
+    //@Enumerated(EnumType.STRING)
+   // @NaturalId
     private String name;
+
 
     @Column(name="description")
     private String description;
@@ -34,6 +43,12 @@ public class Role  {
     )
     private Set<Permission> permissions;
 
+
+//    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    private Set<User> userList = new HashSet<>();
+
+
     public Role()
     {
         permissions = new HashSet<>();
@@ -45,12 +60,16 @@ public class Role  {
     public void setRoleId(Long id) {
         this.roleId = id;
     }
-    public String getName() {
-        return this.name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public String getName() {
+//        return this.name;
+//    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+    public boolean isAdminRole() {
+    return null != this && this.name.equals(RoleName.ROLE_ADMIN);
+}
+
     public String getDescription() {
         return this.description;
     }
@@ -61,6 +80,23 @@ public class Role  {
     {
         return this.permissions;
     }
+
+//    public Set<User> getUserList() {
+//        return userList;
+//    }
+//
+//    public void setUserList(Set<User> userList) {
+//        this.userList = userList;
+//    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
     @Override
     public boolean equals(Object role)

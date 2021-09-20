@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +56,14 @@ public class RoleServiceImpl implements RoleService {
         }
 
         return roleResponses;
+    }
+
+    /**
+     * Find all roles from the database
+     */
+    public Collection<com.studomia.studomia.dao.entities.Role> findAll() {
+
+        return roleRepository.findAll();
     }
 
     @Override

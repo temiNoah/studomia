@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/")
 public class PageController {
@@ -24,10 +26,11 @@ public class PageController {
     }
 
     @GetMapping("/profile")
-    public  String profile(){
+    public  void profile(HttpServletResponse httpServletResponse){
+        httpServletResponse.setHeader("Location", "http://localhost:3003/profile");
+        httpServletResponse.setStatus(302);
 
-
-        return  "profile.html";
+       // return  "profile.html";
     }
 
     @GetMapping("/register")

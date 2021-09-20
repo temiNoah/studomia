@@ -3,6 +3,7 @@ package com.studomia.studomia.dto.response;
 import com.studomia.studomia.dao.entities.Course;
 import com.studomia.studomia.dao.entities.Role;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,6 +35,20 @@ public class AdminResponse {
 
 
     private Set<Role> roles;
+
+    private String updatedAt;
+
+    private String createdBy;
+
+    private String modifiedBy;
+
+    private String createdAt;
+
+    private Boolean emailVerified;
+
+    private Boolean isActive;
+
+
 
 
     public Long getAdminId() {
@@ -106,5 +121,53 @@ public class AdminResponse {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 }
